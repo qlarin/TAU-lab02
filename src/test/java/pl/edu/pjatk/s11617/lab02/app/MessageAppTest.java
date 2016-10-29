@@ -27,4 +27,11 @@ public class MessageAppTest {
 		assertThat(messenger.sendMessage(VALID_SERVER, VALID_MESSAGE),
 				either(equalTo(0)).or(equalTo(1)));
 	}
+
+	@Test
+    public void checkTestingConnection() {
+
+        assertThat(messenger.testConnection(INVALID_SERVER), equalTo(1));
+        assertThat(messenger.testConnection(VALID_SERVER), equalTo(0));
+    }
 }

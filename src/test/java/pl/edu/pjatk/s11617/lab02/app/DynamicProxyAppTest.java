@@ -17,6 +17,7 @@ import pl.edu.pjatk.s11617.lab02.messenger.MalformedRecipientException;
 import pl.edu.pjatk.s11617.lab02.messenger.MessageService;
 import pl.edu.pjatk.s11617.lab02.messenger.SendingStatus;
 
+
 public class DynamicProxyAppTest {
 
 	private static final String VALID_SERVER = "inf.ug.edu.pl";
@@ -43,6 +44,18 @@ public class DynamicProxyAppTest {
 
 	}
 
+	@Test
+    public void checkTestingConnection() {
+
+        InvocationHandler ih = new MessageServiceHandler();
+        MessageService msMock = (MessageService) Proxy.newProxyInstance(
+                MessageService.class.getClassLoader(),
+                new Class[] { MessageService.class }, ih);
+
+        Messenger messenger = new Messenger(msMock);
+
+        assertThat(messenger.testConnection(INVALID_SERVER), equalTo(1));
+    }
 	
 	class MessageServiceHandler implements InvocationHandler {
 
