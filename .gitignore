@@ -1,6 +1,7 @@
 .metadata
 bin/
 tmp/
+target/
 *.tmp
 *.bak
 *.swp
@@ -12,3 +13,8 @@ local.properties
 
 # Eclipse Core
 .project
+
+# Intellij IDEA
+.idea/
+*.iml
+
